@@ -9,7 +9,7 @@
 #include "../command/impl_command.hpp"
 #include "../model/game_model.hpp"
 
-void imp_controller::handle_input( void ) {
+void impl_controller::handle_input( void ) {
     
     //  0    1    2
     //
@@ -56,12 +56,12 @@ void imp_controller::handle_input( void ) {
     model -> move_character(direction);
 }
 
-void imp_controller::key_pressed(SDL_Keysym key) {
+void impl_controller::key_pressed(SDL_Keysym key) {
     
     key_state.insert(key.sym);
 }
 
-void imp_controller::key_unpressed(SDL_Keysym key) {
+void impl_controller::key_released(SDL_Keysym key) {
     
     key_state.erase(key.sym);
 }
