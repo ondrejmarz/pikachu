@@ -8,9 +8,9 @@
 #ifndef game_model_hpp
 #define game_model_hpp
 
+#include "characters.hpp"
+
 class i_command;
-class i_character;
-class object;
 
 #include <queue>
 #include <vector>
@@ -46,18 +46,37 @@ public:
     int     char_state              ( void );
     int     char_move_in_use        ( void );
     bool    char_standing_still     ( void );
+    bool    is_char_attacking       ( void );
     void    char_attack             (int num);
     
     void    move_character          (int direction);
     
-    bool    check_char_collisions   ( void );
+    void    check_char_collisions   ( void );
+    
+    void    move_expiration         ( void );
+    void    moves_hit_angry         ( void );
+    void    delete_dead             ( void );
+    
+    bool    check_char_coll_upst    ( void );
+    bool    check_char_coll_down    ( void );
+    bool    check_char_coll_left    ( void );
+    bool    check_char_coll_rght    ( void );
+    
+    const std::vector < angry > & get_enemies ( void );
     
 private:
     
     std::queue  < i_command * > queue_commands = {};
-    std::vector < object    * > map_limiters = {};
     
-    i_character * main_char = NULL;
+    std::vector < wall > map_walls_rght;
+    std::vector < wall > map_walls_left;
+    std::vector < wall > map_walls_down;
+    std::vector < wall > map_walls_upst;
+    
+    std::vector < angry > enemies;
+    std::vector < move  > attacks;
+    
+    pikachu pika;
 };
 
 #endif /* game_model_hpp */

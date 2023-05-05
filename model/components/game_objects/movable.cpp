@@ -5,8 +5,7 @@
 //  Created by Ondřej März on 26.04.2023.
 //
 
-#include "i_movable.hpp"
-#include "../../../config.h"
+#include "objects.hpp"
 
 i_movable::i_movable( void ): object(), direction(0), last_step(0) { }
 
@@ -23,39 +22,39 @@ void i_movable::step( void ) {
     
     switch (direction+4) {
         case 0:
-            crnt_pos.add_x(-DIAGONAL_STEP);
-            crnt_pos.add_y(-DIAGONAL_STEP);
+            crnt_pos.add_x(-DGNL_STEP);
+            crnt_pos.add_y(-DGNL_STEP);
             break;
             
         case 1:
-            crnt_pos.add_y(-STEP);
+            crnt_pos.add_y(-NRML_STEP);
             break;
             
         case 2:
-            crnt_pos.add_x(DIAGONAL_STEP);
-            crnt_pos.add_y(-DIAGONAL_STEP);
+            crnt_pos.add_x(DGNL_STEP);
+            crnt_pos.add_y(-DGNL_STEP);
             break;
             
         case 3:
-            crnt_pos.add_x(-STEP);
+            crnt_pos.add_x(-NRML_STEP);
             break;
             
         case 5:
-            crnt_pos.add_x(STEP);
+            crnt_pos.add_x(NRML_STEP);
             break;
             
         case 6:
-            crnt_pos.add_x(-DIAGONAL_STEP);
-            crnt_pos.add_y(DIAGONAL_STEP);
+            crnt_pos.add_x(-DGNL_STEP);
+            crnt_pos.add_y(DGNL_STEP);
             break;
             
         case 7:
-            crnt_pos.add_y(STEP);
+            crnt_pos.add_y(NRML_STEP);
             break;
             
         case 8:
-            crnt_pos.add_x(DIAGONAL_STEP);
-            crnt_pos.add_y(DIAGONAL_STEP);
+            crnt_pos.add_x(DGNL_STEP);
+            crnt_pos.add_y(DGNL_STEP);
             break;
             
         default:
@@ -94,4 +93,3 @@ int i_movable::get_facing() {
     
     return last_step + 4;
 }
-
